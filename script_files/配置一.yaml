@@ -1,0 +1,54 @@
+move0:
+  - 135
+  - 18
+move1:
+  - 1290
+  - 350
+click2: "\u9F20\u6807\u5DE6\u51FB"
+time28: 0.5
+move3:
+  - 1000
+  - 390
+click4: "\u9F20\u6807\u5DE6\u51FB"
+move5:
+  - 1290
+  - 350
+click6: "\u9F20\u6807\u5DE6\u51FB"
+move7:
+  - 1143
+  - 575
+click8: "\u9F20\u6807\u5DE6\u51FB"
+time29: 0.5
+move9:
+  - 228
+  - 540
+click10: "\u9F20\u6807\u5DE6\u51FB"
+move11:
+  - 1035
+  - 343
+click12: "\u9F20\u6807\u5DE6\u51FB"
+time13: 0.2
+click14: "\u9F20\u6807\u5DE6\u51FB"
+move15:
+  - 370
+  - 560
+click16: "\u9F20\u6807\u5DE6\u51FB"
+move17:
+  - 415
+  - 336
+click18: "\u9F20\u6807\u5DE6\u51FB"
+click19: "\u9F20\u6807\u5DE6\u51FB"
+click20: "\u9F20\u6807\u5DE6\u51FB"
+move21:
+  - 415
+  - 426
+click22: "\u9F20\u6807\u5DE6\u51FB"
+move23:
+  - 1136
+  - 643
+click24: "\u9F20\u6807\u5DE6\u51FB"
+move25:
+  - 1205
+  - 92
+click26: "\u9F20\u6807\u5DE6\u51FB"
+time27: 10
