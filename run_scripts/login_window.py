@@ -66,6 +66,9 @@ class LoginDialog(QDialog):
         self.login_grid.addWidget(self.status_tip, 5, 2, 1, 5)
 
     def okbutton_clicked_status(self):
+        """
+        调用数据库，将输入的数据与数据库数据对比
+        """
         # 账号判断
         if self.account_edit.text() != "123":
             self.status_tip.setText("账号密码输入错误，请输入正确的账号密码")
