@@ -14,12 +14,18 @@ from conf import IO_yamls
 class MainWindow(QWidget):
     def __init__(self):
         super().__init__()
-        self.base_win()
-        self.setGeometry(300, 300, 500, 600)  # 窗口位置x，y，窗口尺寸x，y
-        self.setWindowTitle('编辑配置')  # 窗口title
+        self.main_win()
+        self.setGeometry(500, 500, 500, 500)  # 窗口位置x，y，窗口尺寸x，y
+        # 居中显示
+        qr = self.frameGeometry()
+        cp = self.screen().availableGeometry().center()
+        qr.moveCenter(cp)
+        self.move(qr.topLeft())
+        # 窗口title
+        self.setWindowTitle('配置界面')
         self.show()
 
-    def base_win(self):
+    def main_win(self):
         # test push git
         # 说明文案区
         configuration_one = QLabel('一、编辑配置前先点击配置一/配置二/配置三\n'
@@ -207,10 +213,10 @@ class MainWindow(QWidget):
         self.w_yaml()
 
 
-if __name__ == '__main__':
-    app = QApplication(sys.argv)
-    plugin = MainWindow()
-    sys.exit(app.exec())
+# if __name__ == '__main__':
+#     app = QApplication(sys.argv)
+#     plugin = MainWindow()
+#     sys.exit(app.exec())
 
 
 
