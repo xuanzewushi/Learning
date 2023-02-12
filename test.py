@@ -3,7 +3,7 @@
 # 2022/10/7 15:55
 # author：彭星荣
 import yaml
-from run_scripts import PlugIn
+from run_scripts import main_window
 
 with open('script_files/配置二.yaml', 'r', encoding='utf-8') as r:
     data = yaml.load(r, Loader=yaml.FullLoader)

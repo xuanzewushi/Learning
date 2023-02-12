@@ -3,8 +3,8 @@
 # 2022/10/6 10:07
 # author：彭星荣
 import pytest
-from SelDis_position import Position
-from run_scripts.SelDis_Execution_profile import Execute
+from position import Position
+from run_scripts.Execution_profile import Execute
 
 
 class TestEdit:

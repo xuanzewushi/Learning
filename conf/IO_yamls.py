@@ -41,6 +41,8 @@ def r_yaml(name):
             return text
         else:
             return ''
+
+
 # if __name__ == '__main__':
 #     data = read_yamls('script_files/win_title.yaml')
 #     print(data)

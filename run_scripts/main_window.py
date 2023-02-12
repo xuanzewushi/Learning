@@ -15,8 +15,12 @@ class MainWindow(QWidget):
     def __init__(self):
         super().__init__()
         self.base_win()
+        self.setGeometry(300, 300, 500, 600)  # 窗口位置x，y，窗口尺寸x，y
+        self.setWindowTitle('编辑配置')  # 窗口title
+        self.show()
 
     def base_win(self):
+        # test push git
         # 说明文案区
         configuration_one = QLabel('一、编辑配置前先点击配置一/配置二/配置三\n'
                                    '二、在右边输入配置后点击对应的写入按钮，将配置写入到配置文档区')
@@ -94,10 +98,6 @@ class MainWindow(QWidget):
         grid.addWidget(self.seve_tip, 7, 4, 1, 2)
 
         self.setLayout(grid)
-
-        self.setGeometry(300, 300, 500, 600)  # 窗口位置x，y，窗口尺寸x，y
-        self.setWindowTitle('编辑配置')  # 窗口title
-        self.show()
 
     def closeEvent(self, event):
         reply = QMessageBox.question(self, '关闭', "是否关闭程序?")

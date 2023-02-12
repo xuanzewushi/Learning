@@ -7,7 +7,7 @@ import sys
 from PyQt6.QtWidgets import *
 from PyQt6.QtCore import Qt
 from conf import IO_yamls
-from run_scripts.SelDis_Execution_profile import Execute
+from run_scripts.Execution_profile import Execute
 
 
 class ExecuteScript(QWidget):
