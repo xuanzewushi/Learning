@@ -4,7 +4,7 @@
 # author：SelDIs
 
 from PyQt6.QtWidgets import *
-from PyQt6.QtCore import *
+from register_sqlite import execute_register_data
 
 
 class RegisterDialog(QWidget):
@@ -42,13 +42,16 @@ class RegisterDialog(QWidget):
         register_button.setText("注册")
         register_button.move(150, 260)
         # 绑定按钮事件
-        ok_button.clicked.connect(self.register_clicked)
+        register_button.clicked.connect(self.register_clicked)
 
     def register_clicked(self):
         """
         调用数据库， 将数据传入数据库记录
         """
-        pass
+        print(self.account_edit.text())
+        print(self.password_edit.text())
+        data = 'insert into user (name, password) values({}, {})'.format(self.account_edit.text(), self.password_edit.text())
+        execute_register_data(data)
 
 
 
