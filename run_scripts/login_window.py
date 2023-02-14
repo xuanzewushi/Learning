@@ -25,6 +25,12 @@ class LoginDialog(QDialog):
         qr.moveCenter(cp)
         self.move(qr.topLeft())
 
+        self.status_tip = QLabel(' ')
+        self.account_edit = QLineEdit()
+        self.password_edit = QLineEdit()
+        self.login_grid = QGridLayout()
+
+        #
         self.login_win()
 
     def login_win(self):
@@ -32,11 +38,8 @@ class LoginDialog(QDialog):
         account_tip = QLabel('账号：')
         password_tip = QLabel('密码：')
         top_tip = QLabel(' ')
-        self.status_tip = QLabel(' ')
         # 输入框以及输入框内的提示文案
-        self.account_edit = QLineEdit()
         self.account_edit.setPlaceholderText("请输入账号")
-        self.password_edit = QLineEdit()
         self.password_edit.setPlaceholderText("请输入密码")
 
         # 设置按钮
@@ -51,7 +54,6 @@ class LoginDialog(QDialog):
         register_button.clicked.connect(self.register_clicked_status)
 
         # 设置grid页面布局
-        self.login_grid = QGridLayout()
         self.setLayout(self.login_grid)
         self.login_grid.setSpacing(6)
 
@@ -61,7 +63,7 @@ class LoginDialog(QDialog):
         self.login_grid.addWidget(self.account_edit, 2, 2, 1, 4)
         self.login_grid.addWidget(password_tip, 3, 1)
         self.login_grid.addWidget(self.password_edit, 3, 2, 1, 4)
-        self.login_grid.addWidget(ok_button, 4, 2)
+        self.login_grid.addWidget(ok_button, 4, 3)
         self.login_grid.addWidget(register_button, 4, 4)
         self.login_grid.addWidget(self.status_tip, 5, 2, 1, 5)
 

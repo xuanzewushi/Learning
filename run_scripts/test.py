@@ -28,7 +28,15 @@ import sqlite3
 
 from run_scripts.register_sqlite import execute_register_data
 
-reg = execute_register_data("select id from user")
-# print(reg)
-
+reg = execute_register_data("select * from user")
+print(reg)
+# conn = sqlite3.connect('./script_files/register_sqlite.db')
+# cursor = conn.cursor()
+# # cursor.execute('create table user (id varchar(20) primary key, name varchar(20), password varchar(20))')
+# # cursor.execute('insert into user (id, name, password) values (\'1\', \'admin\', \'admin\')')
+# # conn.commit()
+# cursor.execute("select * from user")
+# print(cursor.fetchall())
+# cursor.close()
+# conn.close()
 

@@ -20,20 +20,25 @@ class RegisterDialog(QWidget):
         cp = self.screen().availableGeometry().center()
         qr.moveCenter(cp)
         self.move(qr.topLeft())
+
+        # 输入框
+        self.account_edit = QLineEdit(self)
+        self.password_edit = QLineEdit(self)
+        self.label_tip = QLabel(' ', self)
+
         self.register_win()
 
     def register_win(self):
         # 内容
-        account_tip = QLabel('账号*：', self).move(100, 100)
-        password_tip = QLabel('密码*：', self).move(100, 140)
+        QLabel('账号*：', self).move(100, 100)
+        QLabel('密码*：', self).move(100, 140)
+        self.label_tip.move(150, 300)
         top_tip = QLabel('1.带有*号的输入框是必填项。\n'
                          '2.账号/密码不得少于6位。', self)
         top_tip.move(100, 30)
         # 输入框以及输入框内的提示文案
-        self.account_edit = QLineEdit(self)
         self.account_edit.move(150, 100)
         self.account_edit.setPlaceholderText("请输入账号")
-        self.password_edit = QLineEdit(self)
         self.password_edit.move(150, 140)
         self.password_edit.setPlaceholderText("请输入密码")
 
@@ -48,10 +53,14 @@ class RegisterDialog(QWidget):
         """
         调用数据库， 将数据传入数据库记录
         """
-        print(self.account_edit.text())
-        print(self.password_edit.text())
-        data = 'insert into user (name, password) values({}, {})'.format(self.account_edit.text(), self.password_edit.text())
+        account = self.account_edit.text()
+        password = self.password_edit.text()
+        # 先查询获取账号已记录的数量，然后数量+1写入id
+        sel_data = len(execute_register_data('select * from user'))
+        print(sel_data)
+        data = 'insert into user (id, name, password) values({}, {}, {})'.format(sel_data+1, account, password)
         execute_register_data(data)
+        self.label_tip.setText("注册成功")
 
 
 
