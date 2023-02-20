@@ -9,6 +9,8 @@ import time
 from PyQt6.QtWidgets import *
 from PyQt6.QtCore import *
 from register_window import RegisterDialog
+from register_sqlite import execute_register_data
+from PyQt6.QtWidgets import QMainWindow
 
 
 class LoginDialog(QDialog):
@@ -32,6 +34,7 @@ class LoginDialog(QDialog):
 
         #
         self.login_win()
+        # self.okbutton_clicked_status()
 
     def login_win(self):
         # 内容
@@ -71,20 +74,39 @@ class LoginDialog(QDialog):
         """
         调用数据库，将输入的数据与数据库数据对比
         """
+
         # 账号判断
-        if self.account_edit.text() != "123":
-            self.status_tip.setText("账号密码输入错误，请输入正确的账号密码")
+        if self.account_edit.text() == '':
+            self.repaint_status_tip(" "*20 + "账号不可为空！")
             return
-
         # 密码判断
-        if self.password_edit.text() != "1234":
-            self.status_tip.setText("账号密码输入错误，请输入正确的账号密码")
+        if self.password_edit.text() == "":
+            self.repaint_status_tip(" "*20 + "密码不可为空！")
             return
 
-        # 通过验证，关闭对话框并返回1
-        self.done(1)
+        select_data = 'select * from user where name=%s and password=%s'\
+                      % (self.account_edit.text(), self.password_edit.text())
+        account_data = execute_register_data(select_data)
+        print(account_data)
+        if len(account_data) == 1:
+            self.done(1)
+        else:
+            print(account_data)
+            self.repaint_status_tip('账号密码输入错误，请重新输入！')
+
+    def repaint_status_tip(self, date):
+        self.status_tip.setText(date)
+        self.status_tip.repaint()
+        time.sleep(1)
+        self.status_tip.setText(" ")
 
     def register_clicked_status(self):
         # 关闭对话框并返回2
         self.done(2)
 
+    def closeEvent(self, event):
+        reply = QMessageBox.question(self, '关闭', "是否关闭程序?")
+        if str(reply) == 'StandardButton.Yes':
+            return False
+        else:
+            event.ignore()

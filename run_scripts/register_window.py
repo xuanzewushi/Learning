@@ -2,12 +2,13 @@
 # -*- coding:utf-8 -*-
 # 2023/2/12
 # author：SelDIs
+import time
 
 from PyQt6.QtWidgets import *
 from register_sqlite import execute_register_data
 
 
-class RegisterDialog(QWidget):
+class RegisterDialog(QDialog):
     def __init__(self):
         super().__init__()
         self.setWindowTitle('注册界面')
@@ -24,7 +25,8 @@ class RegisterDialog(QWidget):
         # 输入框
         self.account_edit = QLineEdit(self)
         self.password_edit = QLineEdit(self)
-        self.label_tip = QLabel(' ', self)
+        self.label_tip = QLabel(' ')
+        self.label_tip.repaint()
 
         self.register_win()
 
@@ -32,7 +34,7 @@ class RegisterDialog(QWidget):
         # 内容
         QLabel('账号*：', self).move(100, 100)
         QLabel('密码*：', self).move(100, 140)
-        self.label_tip.move(150, 300)
+        self.label_tip.move(120, 300)
         top_tip = QLabel('1.带有*号的输入框是必填项。\n'
                          '2.账号/密码不得少于6位。', self)
         top_tip.move(100, 30)
@@ -45,7 +47,7 @@ class RegisterDialog(QWidget):
         # 注册按钮
         register_button = QPushButton(self)
         register_button.setText("注册")
-        register_button.move(150, 260)
+        register_button.move(170, 260)
         # 绑定按钮事件
         register_button.clicked.connect(self.register_clicked)
 
@@ -56,11 +58,13 @@ class RegisterDialog(QWidget):
         account = self.account_edit.text()
         password = self.password_edit.text()
         # 先查询获取账号已记录的数量，然后数量+1写入id
-        sel_data = len(execute_register_data('select * from user'))
-        print(sel_data)
-        data = 'insert into user (id, name, password) values({}, {}, {})'.format(sel_data+1, account, password)
+        get_data = execute_register_data('select * from user')
+        data_len = len(get_data)
+        data = 'insert into user (id, name, value), values({}, {}, {}'.format(data_len, account, password)
         execute_register_data(data)
-        self.label_tip.setText("注册成功")
+        self.label_tip.setText("注册成功，等待3s返回登录页")
+        time.sleep(3)
+        self.done(1)
 
 
 
